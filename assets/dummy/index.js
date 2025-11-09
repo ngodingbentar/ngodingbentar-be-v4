@@ -98,7 +98,7 @@ export const onlineData = {
     {
       user_id: "2",
       name: "Zasa",
-      avatar: "https://avatar.iran.liara.run/public/girl",
+      avatar: "https://testingbot.com/free-online-tools/random-avatar/80?img=1",
       location: "BSD",
     },
     {
@@ -110,7 +110,7 @@ export const onlineData = {
     {
       user_id: "4",
       name: "Aldo",
-      avatar: "https://avatar.iran.liara.run/public/girl",
+      avatar: "https://testingbot.com/free-online-tools/random-avatar/80?img=2",
       location: "Sahid",
     },
     {
@@ -122,7 +122,7 @@ export const onlineData = {
     {
       user_id: "6",
       name: "Arye",
-      avatar: "https://avatar.iran.liara.run/public/girl",
+      avatar: "https://testingbot.com/free-online-tools/random-avatar/80?img=3",
       location: "BSD",
     },
     {
@@ -134,7 +134,7 @@ export const onlineData = {
     {
       user_id: "8",
       name: "Nesha",
-      avatar: "https://avatar.iran.liara.run/public/girl",
+      avatar: "https://testingbot.com/free-online-tools/random-avatar/80?img=4",
       location: "WFA",
     },
   ],
