@@ -3,7 +3,7 @@ export const notificationsData = [
     id: "1",
     type: "Reimbursement",
     status: "PAID",
-    message_content: [
+    content: [
       {
         type: "text",
         content: 'Your submission "Lorem ipsum dolor..." has been ',
@@ -20,7 +20,7 @@ export const notificationsData = [
     id: "2",
     type: "Overtime",
     status: "REJECTED",
-    message_content: [
+    content: [
       {
         type: "text",
         content: 'Your submission "description" has been ',
@@ -34,7 +34,7 @@ export const notificationsData = [
     id: "3",
     type: "Reimbursement",
     status: "PROCESSING",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission will be " },
       { type: "bold", content: "processed" },
       {
@@ -48,7 +48,7 @@ export const notificationsData = [
     id: "4",
     type: "Sickness",
     status: "APPROVED",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission has been " },
       { type: "bold", content: "approved" },
       { type: "text", content: " by the Superior." },
@@ -59,7 +59,7 @@ export const notificationsData = [
     id: "5",
     type: "Sickness",
     status: "REJECTED",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission has been " },
       { type: "bold", content: "rejected" },
       {
@@ -73,7 +73,7 @@ export const notificationsData = [
     id: "6",
     type: "Sickness",
     status: "PROCESSING",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission is " },
       { type: "bold", content: "being reviewed" },
       {
@@ -87,7 +87,7 @@ export const notificationsData = [
     id: "7",
     type: "Reimbursement",
     status: "PAID",
-    message_content: [
+    content: [
       {
         type: "text",
         content: 'Your submission "Lorem ipsum dolor..." has been ',
@@ -104,7 +104,7 @@ export const notificationsData = [
     id: "8",
     type: "Reimbursement",
     status: "REJECTED",
-    message_content: [
+    content: [
       {
         type: "text",
         content: 'Your submission "description" has been ',
@@ -118,7 +118,7 @@ export const notificationsData = [
     id: "9",
     type: "Reimbursement",
     status: "PROCESSING",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission will be " },
       { type: "bold", content: "processed" },
       {
@@ -132,7 +132,7 @@ export const notificationsData = [
     id: "10",
     type: "Overtime",
     status: "APPROVED",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission has been " },
       { type: "bold", content: "approved" },
       { type: "text", content: " by the Superior." },
@@ -143,7 +143,7 @@ export const notificationsData = [
     id: "11",
     type: "Sickness",
     status: "REJECTED",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission has been " },
       { type: "bold", content: "rejected" },
       {
@@ -157,7 +157,7 @@ export const notificationsData = [
     id: "12",
     type: "Overtime",
     status: "PROCESSING",
-    message_content: [
+    content: [
       { type: "text", content: "Your submission is " },
       { type: "bold", content: "being reviewed" },
       {
