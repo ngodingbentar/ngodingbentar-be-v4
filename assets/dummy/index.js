@@ -1,91 +1,89 @@
-export const notificationsData = {
-  notifications: [
-    {
-      id: "notif_101",
-      type: "REIMBURSEMENT",
-      status: "PAID",
-      message_content: [
-        {
-          type: "text",
-          content: 'Your submission "Lorem ipsum dolor..." has been ',
-        },
-        { type: "bold", content: "paid" },
-        {
-          type: "text",
-          content: ", please check your BRIMO application, Thankyou",
-        },
-      ],
-      created_at: "2025-11-09T09:15:00Z",
-    },
-    {
-      id: "notif_102",
-      type: "REIMBURSEMENT",
-      status: "REJECTED",
-      message_content: [
-        {
-          type: "text",
-          content: 'Your submission "description" has been ',
-        },
-        { type: "bold", content: "rejected" },
-        { type: "text", content: ", please click for details." },
-      ],
-      created_at: "2025-11-08T15:30:00Z",
-    },
-    {
-      id: "notif_103",
-      type: "REIMBURSEMENT",
-      status: "PROCESSING",
-      message_content: [
-        { type: "text", content: "Your submission will be " },
-        { type: "bold", content: "processed" },
-        {
-          type: "text",
-          content: " according to the reimbursement schedule. Please wait",
-        },
-      ],
-      created_at: "2022-10-06T11:00:00Z",
-    },
-    {
-      id: "notif_104",
-      type: "SICKNESS",
-      status: "APPROVED",
-      message_content: [
-        { type: "text", content: "Your submission has been " },
-        { type: "bold", content: "approved" },
-        { type: "text", content: " by the Superior." },
-      ],
-      created_at: "2022-10-05T17:05:00Z",
-    },
-    {
-      id: "notif_105",
-      type: "SICKNESS",
-      status: "REJECTED",
-      message_content: [
-        { type: "text", content: "Your submission has been " },
-        { type: "bold", content: "rejected" },
-        {
-          type: "text",
-          content: ", please confirm with your Superior.",
-        },
-      ],
-      created_at: "2022-10-05T16:00:00Z",
-    },
-    {
-      id: "notif_106",
-      type: "SICKNESS",
-      status: "PROCESSING",
-      message_content: [
-        { type: "text", content: "Your submission is " },
-        { type: "bold", content: "being reviewed" },
-        {
-          type: "text",
-          content: " by the Superior for the approval process, please wait.",
-        },
-      ],
-      created_at: "2022-10-05T15:30:00Z",
-    },
-  ],
-};
+export const notificationsData = [
+  {
+    id: "notif_101",
+    type: "REIMBURSEMENT",
+    status: "PAID",
+    message_content: [
+      {
+        type: "text",
+        content: 'Your submission "Lorem ipsum dolor..." has been ',
+      },
+      { type: "bold", content: "paid" },
+      {
+        type: "text",
+        content: ", please check your BRIMO application, Thankyou",
+      },
+    ],
+    created_at: "2025-11-09T09:15:00Z",
+  },
+  {
+    id: "notif_102",
+    type: "REIMBURSEMENT",
+    status: "REJECTED",
+    message_content: [
+      {
+        type: "text",
+        content: 'Your submission "description" has been ',
+      },
+      { type: "bold", content: "rejected" },
+      { type: "text", content: ", please click for details." },
+    ],
+    created_at: "2025-11-08T15:30:00Z",
+  },
+  {
+    id: "notif_103",
+    type: "REIMBURSEMENT",
+    status: "PROCESSING",
+    message_content: [
+      { type: "text", content: "Your submission will be " },
+      { type: "bold", content: "processed" },
+      {
+        type: "text",
+        content: " according to the reimbursement schedule. Please wait",
+      },
+    ],
+    created_at: "2022-10-06T11:00:00Z",
+  },
+  {
+    id: "notif_104",
+    type: "SICKNESS",
+    status: "APPROVED",
+    message_content: [
+      { type: "text", content: "Your submission has been " },
+      { type: "bold", content: "approved" },
+      { type: "text", content: " by the Superior." },
+    ],
+    created_at: "2022-10-05T17:05:00Z",
+  },
+  {
+    id: "notif_105",
+    type: "SICKNESS",
+    status: "REJECTED",
+    message_content: [
+      { type: "text", content: "Your submission has been " },
+      { type: "bold", content: "rejected" },
+      {
+        type: "text",
+        content: ", please confirm with your Superior.",
+      },
+    ],
+    created_at: "2022-10-05T16:00:00Z",
+  },
+  {
+    id: "notif_106",
+    type: "SICKNESS",
+    status: "PROCESSING",
+    message_content: [
+      { type: "text", content: "Your submission is " },
+      { type: "bold", content: "being reviewed" },
+      {
+        type: "text",
+        content: " by the Superior for the approval process, please wait.",
+      },
+    ],
+    created_at: "2022-10-05T15:30:00Z",
+  },
+];
 
 export const onlineData = {
   users: [
