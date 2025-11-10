@@ -1031,5 +1031,24 @@ apiRouter.get(
   })
 );
 
+apiRouter.get(
+  "/091125/activity",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      res.send({
+        error: "",
+        status: 200,
+        data: {
+          check_in: "2025-11-11T09:33:00+07:00",
+          check_out: null,
+          status: "CHECKED_IN",
+        },
+      });
+    } catch (err) {
+      res.send(err);
+    }
+  })
+);
+
 // export default apiRouter;
 module.exports = apiRouter;
