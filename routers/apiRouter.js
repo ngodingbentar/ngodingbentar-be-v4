@@ -18,6 +18,7 @@ const {
   onlineData,
   newsData,
   profileData,
+  rolesData,
 } = require("../assets/dummy");
 
 dotenv.config();
@@ -1008,6 +1009,21 @@ apiRouter.get(
         data: notificationsData,
         error: "",
         status: 200,
+      });
+    } catch (err) {
+      res.send(err);
+    }
+  })
+);
+
+apiRouter.get(
+  "/091125/roles",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      res.send({
+        code: 200,
+        msg: "oke",
+        data: rolesData,
       });
     } catch (err) {
       res.send(err);
