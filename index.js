@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const apiRouter = require('./routers/apiRouter.js');
 // const connectDB = require('./config/db');
 const mongoose = require('mongoose');
@@ -17,12 +18,12 @@ const connectDB = async () => {
 
     console.log('MongoDB Connected...');
   } catch (err) {
-    console.error(err.message);
+    console.error("err.message", err.message);
     process.exit(1);
   }
 };
 
-// connectDB();
+connectDB();
 
 
 app.use('/api/v1', apiRouter)

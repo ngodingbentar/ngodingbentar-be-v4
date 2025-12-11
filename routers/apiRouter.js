@@ -917,7 +917,7 @@ apiRouter.post(
         if (url) {
           res.json(url);
         } else {
-          const shortUrl = "http://www.nuxt.my.id/s/" + urlCode;
+          const shortUrl = "https://ngodingbentar-be-v4.vercel.app/s/" + urlCode;
 
           url = new Url({
             longUrl,
