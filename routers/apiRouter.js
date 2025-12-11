@@ -242,7 +242,6 @@ apiRouter.get(
   "/google-search",
   expressAsyncHandler(async (req, res) => {
     const query = req.query;
-    console.log("query", query);
 
     const options = {
       method: "POST",
@@ -263,7 +262,6 @@ apiRouter.get(
 
     try {
       const response = await axios.request(options);
-      // console.log(response.data);
       res.send(response.data);
       // res.send('wadudu')
     } catch (error) {
@@ -796,7 +794,7 @@ apiRouter.get(
   expressAsyncHandler(async (req, res) => {
     var options = {
       method: "GET",
-      url: "https://api.rajaongkir.com/starter/province",
+      url: "https://rajaongkir.komerce.id/api/v1/destination/province",
       headers: { key: raja_ongkir_key },
     };
 
@@ -828,8 +826,8 @@ apiRouter.get(
   expressAsyncHandler(async (req, res) => {
     var options = {
       method: "GET",
-      url: "https://api.rajaongkir.com/starter/city",
-      qs: { province: req.params.id },
+      url: `https://rajaongkir.komerce.id/api/v1/destination/city/${req.params.id}`,
+      // qs: { province: req.params.id },
       headers: { key: raja_ongkir_key },
     };
 
@@ -886,10 +884,11 @@ apiRouter.post(
   expressAsyncHandler(async (req, res) => {
     var options = {
       method: "POST",
-      url: "https://api.rajaongkir.com/starter/cost",
+      url: "https://rajaongkir.komerce.id/api/v1/calculate/district/domestic-cost",
       headers: {
         key: raja_ongkir_key,
-        "content-type": "application/x-www-form-urlencoded",
+        accept: "application/json",
+        "content-type": "application/json",
       },
       form: {
         origin: req.body.origin,
@@ -918,7 +917,7 @@ apiRouter.post(
         if (url) {
           res.json(url);
         } else {
-          const shortUrl = "http://www.nuxt.my.id/s/" + urlCode;
+          const shortUrl = "https://ngodingbentar-be-v4.vercel.app/s/" + urlCode;
 
           url = new Url({
             longUrl,
