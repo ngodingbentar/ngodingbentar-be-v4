@@ -10,7 +10,7 @@ const Url = require("../models/urlModel");
 const Blog = require("../models/blogModel");
 const Categories = require("../models/categoriesModel");
 const cheerio = require("cheerio");
-const ytdl = require("ytdl-core");
+const { Innertube, UniversalCache } = require("youtubei.js");
 const midtransClient = require("midtrans-client");
 const instagramGetUrl = require("instagram-url-direct");
 const {
@@ -322,8 +322,50 @@ apiRouter.get(
   "/videoInfo",
   expressAsyncHandler(async (req, res) => {
     const videoURL = req.query.videoURL;
-    const info = await ytdl.getInfo(videoURL);
-    res.status(200).json(info);
+    try {
+      let cookieString = "";
+      try {
+        const cookies = JSON.parse(fs.readFileSync("cookies.json"));
+        // Convert cookie array to string Header format
+        cookieString = cookies
+          .map((c) => `${c.name}=${c.value}`)
+          .join("; ");
+      } catch (err) {
+        console.log("No cookies found or invalid json");
+      }
+
+      const youtube = await Innertube.create({
+        cache: new UniversalCache(false),
+        cookie: cookieString,
+      });
+
+      // Extract video ID from URL
+      const videoId = videoURL.split('v=')[1]?.split('&')[0];
+      if (!videoId) throw new Error("Invalid Video URL");
+
+      const info = await youtube.getInfo(videoId);
+      
+      // Map youtubei.js response to look similar to ytdl-core for frontend compatibility
+      const mappedInfo = {
+        videoDetails: {
+          title: info.basic_info.title,
+          description: info.basic_info.short_description,
+          lengthSeconds: info.basic_info.duration,
+          viewCount: info.basic_info.view_count,
+          videoId: info.basic_info.id,
+          author: {
+            name: info.basic_info.channel.name,
+          }
+        },
+        formats: info.streaming_data?.formats.concat(info.streaming_data.adaptive_formats) || []
+      };
+
+      console.log("info retrieved", mappedInfo.videoDetails.title);
+      res.status(200).json(mappedInfo);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
   })
 );
 
@@ -416,11 +458,47 @@ apiRouter.get(
   expressAsyncHandler(async (req, res) => {
     const videoURL = req.query.videoURL;
     const itag = req.query.itag;
-    const myname = `${thisName}.mp4`;
-    res.header("Content-Disposition", `attachment;\ filename=${myname}`);
-    ytdl(videoURL, {
-      filter: (format) => format.itag == itag,
-    }).pipe(res);
+    const myname = `${thisName || 'video'}.mp4`;
+    
+    try {
+      let cookieString = "";
+      try {
+        const cookies = JSON.parse(fs.readFileSync("cookies.json"));
+        cookieString = cookies
+          .map((c) => `${c.name}=${c.value}`)
+          .join("; ");
+      } catch (err) {
+        console.log("No cookies found or invalid json");
+      }
+
+      const youtube = await Innertube.create({
+        cache: new UniversalCache(false),
+        cookie: cookieString,
+      });
+
+      const videoId = videoURL.split('v=')[1]?.split('&')[0];
+      if (!videoId) throw new Error("Invalid Video URL");
+
+      // Note: youtubei.js download helper selects best format by default or we can specify options.
+      // We'll try to download 'best' quality for now as specific itag support works differently.
+      const stream = await youtube.download(videoId, {
+        type: 'video+audio', // Request video with audio
+        quality: 'best',
+        format: 'mp4'
+      });
+      
+      res.header("Content-Disposition", `attachment; filename="${myname}"`);
+      
+      // Stream the response
+      for await (const chunk of stream) {
+        res.write(chunk);
+      }
+      res.end();
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
   })
 );
 

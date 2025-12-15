@@ -28,7 +28,7 @@
     "request": "^2.88.2",
     "shortid": "^2.2.16",
     "valid-url": "^1.0.9",
-    "ytdl-core": "4.11.5"
+    "youtubei.js": "^16.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
