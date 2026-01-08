@@ -34,6 +34,7 @@ const binderbyte_Key = process.env.API_KEY_BINDERBYTE;
 const film_key = process.env.OMDB_API;
 const google_key = process.env.GOOGLE_SEARCH;
 const kbbi_url = process.env.KBBI_URL;
+const music_api = process.env.MUSIC_API;
 
 
 // Playground
@@ -470,7 +471,7 @@ apiRouter.get(
   expressAsyncHandler(async (req, res) => {
     try {
       const urlVideo = req.query.q || "";
-      const url = `https://www.shazam.com/video/v3/-/-/web/385334817/youtube/video?q=${urlVideo}`;
+      const url = `${music_api}/search?q=${urlVideo}&limit=1`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -498,7 +499,7 @@ apiRouter.get(
   expressAsyncHandler(async (req, res) => {
     try {
       const title = req.query.q || "";
-      const url = `https://www.shazam.com/services/search/v3/en-US/ID/web/search?query=${title}&numResults=3&offset=0&types=artists,songs`;
+      const url = `${music_api}/search?q=${title}&limit=3`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -511,7 +512,7 @@ apiRouter.get(
   "/music/track/similarities/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/shazam/v3/en-US/ID/web/-/tracks/track-similarities-id-${req.params.id}?startFrom=0&pageSize=20&connected=`;
+      const url = `${music_api}/track/${req.params.id}`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -524,7 +525,7 @@ apiRouter.get(
   "/music/album-featured-in/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/services/amapi/custom/en/ID/albumfeaturedin/${req.params.id}`;
+      const url = `${music_api}/album/${req.params.id}`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -537,7 +538,7 @@ apiRouter.get(
   "/music/count/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/services/count/v2/web/track/${req.params.id}`;
+      const url = `${music_api}/track/${req.params.id}`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -550,7 +551,7 @@ apiRouter.get(
   "/music/artist-top-tracks/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://cdn.shazam.com/shazam/v3/en-US/ID/web/-/tracks/artisttoptracks_${req.params.id}?startFrom=0&pageSize=20&connected=`;
+      const url = `${music_api}/artist/${req.params.id}/top?limit=20`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -563,7 +564,7 @@ apiRouter.get(
   "/music/artist/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/discovery/v3/en-US/ID/web/artist/${req.params.id}?shazamapiversion=v3&video=v3`;
+      const url = `${music_api}/artist/${req.params.id}`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -576,7 +577,7 @@ apiRouter.get(
   "/music/artist/bio/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/services/amapi/v1/catalog/ID/artists/${req.params.id}?extend=artistBio%2CbornOrFormed%2CeditorialArtwork%2Corigin&views=featured-release%2Cfull-albums%2Cappears-on-albums%2Cfeatured-albums%2Cfeatured-on-albums%2Csingles%2Ccompilation-albums%2Clive-albums%2Clatest-release%2Ctop-music-videos%2Csimilar-artists%2Ctop-songs%2Cplaylists%2Cessential-albums`;
+      const url = `${music_api}/artist/${req.params.id}`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -589,7 +590,7 @@ apiRouter.get(
   "/music/discovery/ID",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/shazam/v3/en-US/ID/web/-/tracks/risers-country-chart-ID?pageSize=20&startFrom=0`;
+      const url = `${music_api}/chart/0/tracks?limit=20`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -602,7 +603,7 @@ apiRouter.get(
   "/music/top20/global",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/shazam/v3/en-US/ID/web/-/tracks/world-chart-world?pageSize=20&startFrom=0`;
+      const url = `${music_api}/chart/0/tracks?limit=20`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -615,7 +616,7 @@ apiRouter.get(
   "/music/top200/global",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/shazam/v3/en-US/ID/web/-/tracks/world-chart-world?pageSize=200&startFrom=0`;
+      const url = `${music_api}/chart/0/tracks?limit=200`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -628,7 +629,7 @@ apiRouter.get(
   "/music/top20/ID",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/shazam/v3/en-US/ID/web/-/tracks/ip-country-chart-ID?pageSize=20&startFrom=0`;
+      const url = `${music_api}/playlist/1116188761/tracks?limit=20`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -641,7 +642,7 @@ apiRouter.get(
   "/music/top200/ID",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/shazam/v3/en-US/ID/web/-/tracks/ip-country-chart-ID?pageSize=200&startFrom=0`;
+      const url = `${music_api}/playlist/1116188761/tracks?limit=200`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
@@ -654,7 +655,7 @@ apiRouter.get(
   "/music/track/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      const url = `https://www.shazam.com/discovery/v5/en-US/ID/web/-/track/${req.params.id}?shazamapiversion=v3&video=v3`;
+      const url = `${music_api}/track/${req.params.id}`;
       const result = await axios.get(url);
       res.send(result.data);
     } catch (err) {
