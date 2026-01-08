@@ -33,6 +33,8 @@ const raja_ongkir_key = process.env.RAJA_ONGKIR;
 const binderbyte_Key = process.env.API_KEY_BINDERBYTE;
 const film_key = process.env.OMDB_API;
 const google_key = process.env.GOOGLE_SEARCH;
+const kbbi_url = process.env.KBBI_URL;
+
 
 // Playground
 apiRouter.get(
@@ -952,6 +954,21 @@ apiRouter.get(
     const url = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${long}&key=${key}&lang=${lang}`;
     const result = await axios.get(url);
     res.send(result.data);
+  })
+);
+
+apiRouter.get(
+  "/kbbi/:id",
+  expressAsyncHandler(async (req, res) => {
+    var options = {
+      method: "GET",
+      url: `${kbbi_url}/${req.params.id}`,
+    };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+      res.send(JSON.parse(body));
+    });
   })
 );
 
