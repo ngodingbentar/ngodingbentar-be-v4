@@ -38,12 +38,50 @@ const music_api = process.env.MUSIC_API;
 
 
 // Playground
+/**
+ * @swagger
+ * /ping:
+ *   get:
+ *     summary: Returns a pong message
+ *     responses:
+ *       200:
+ *         description: A pong message
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: pong
+ */
 apiRouter.get(
   "/ping",
   expressAsyncHandler(async (req, res) => {
     res.json({ message: "pong" });
   })
 );
+/**
+ * @swagger
+ * /random/image/{square}:
+ *   get:
+ *     summary: Get a random square image
+ *     parameters:
+ *       - in: path
+ *         name: square
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: Size of the square image
+ *     responses:
+ *       200:
+ *         description: An image
+ *         content:
+ *           image/jpeg:
+ *             schema:
+ *               type: string
+ *               format: binary
+ */
 apiRouter.get(
   "/random/image/:square",
   expressAsyncHandler(async (req, res) => {
@@ -291,6 +329,25 @@ apiRouter.get(
 );
 
 // OMDB
+/**
+ * @swagger
+ * /film:
+ *   get:
+ *     summary: Search for films
+ *     parameters:
+ *       - in: query
+ *         name: s
+ *         schema:
+ *           type: string
+ *         description: Search query
+ *     responses:
+ *       200:
+ *         description: List of films
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
 apiRouter.get(
   "/film",
   expressAsyncHandler(async (req, res) => {

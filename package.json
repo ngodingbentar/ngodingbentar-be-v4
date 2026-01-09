@@ -27,6 +27,8 @@
     "punycode": "^2.3.1",
     "request": "^2.88.2",
     "shortid": "^2.2.16",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "valid-url": "^1.0.9",
     "ytdl-core": "4.11.5"
   },

@@ -10,6 +10,34 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Ngodingbentar API',
+      version: '1.0.0',
+      description: 'API Documentation for Ngodingbentar',
+    },
+    servers: [
+      {
+        url: 'https://ngodingbentar-be-v4.vercel.app/api/v1',
+        description: 'Production server'
+      },
+      {
+        url: 'http://localhost:3001/api/v1',
+        description: 'Development server'
+      },
+    ],
+  },
+  apis: ['./routers/*.js'],
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
