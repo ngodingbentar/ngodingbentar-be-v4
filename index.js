@@ -31,6 +31,20 @@ const swaggerOptions = {
         description: 'Development server'
       },
     ],
+    components: {
+      securitySchemes: {
+        ApiKeyAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'access_token',
+        },
+      },
+    },
+    security: [
+      {
+        ApiKeyAuth: [],
+      },
+    ],
   },
   apis: ['./routers/*.js'],
 };
@@ -61,8 +75,16 @@ const connectDB = async () => {
 
 connectDB();
 
+const verifyToken = (req, res, next) => {
+  const token = req.headers['access_token'];
+  if (token === '123456') {
+    next();
+  } else {
+    res.status(401).json({ message: 'Unauthorized. Invalid or missing access token.' });
+  }
+};
 
-app.use('/api/v1', apiRouter)
+app.use('/api/v1', verifyToken, apiRouter)
 
 app.get('/', (req, res) => res.send('Home Page Route'));
 
